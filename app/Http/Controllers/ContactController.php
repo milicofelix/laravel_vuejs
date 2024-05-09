@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\ContactReason;
 
 class ContactController extends Controller
 {
     public function index() {
 
-        $contact_reason = [
-            '1' => 'Dúvida',
-            '2' => 'Elogio',
-            '3' => 'Reclamação'
-        ];
+        // $contact_reason = [
+        //     '1' => 'Dúvida',
+        //     '2' => 'Elogio',
+        //     '3' => 'Reclamação'
+        // ];
+        $contact_reason = ContactReason::all();
         // $contacts->name = $request->input('name');
         // $contacts->phone = $request->input('phone');
         // $contacts->email = $request->input('email');
