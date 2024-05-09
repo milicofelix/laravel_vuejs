@@ -32,10 +32,12 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'email',
+            'email' => 'email|unique:contacts',
             'contact_reason_id' => 'required',
             'msg' => 'required|max:2000'
-        ]);
+        ],
+        ['name.required' => 'O campo nome deve ser preenchido!']
+    );
         $contacts = new Contact();
         $contacts->fill($request->all());
         $contacts->save();
