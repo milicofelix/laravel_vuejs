@@ -27,7 +27,7 @@
         <div class="contato">
             <h1>Contato</h1>
             <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.<p>
-            @component('site.layouts.components._form-contact', ['class' => 'borda-branca'])
+            @component('site.layouts.components._form-contact', ['class' => 'borda-branca', 'contact_reason'=> $contact_reason])
             @endcomponent
         </div>
     </div>

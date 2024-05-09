@@ -1,19 +1,22 @@
 <form action={{ route('site.contato') }} method="post">
     @csrf
-    <input name="nome" type="text" placeholder="Nome" class="{{$class}}">
+    <input name="name" type="text" placeholder="Digite seu nome" class="{{$class}}" value="{{old('name')}}">
     <br>
-    <input name="telefone" type="text" placeholder="Telefone" class="{{$class}}">
+    <input name="phone" type="text" placeholder="Digite seu telefone" class="{{$class}}" value="{{old('phone')}}">
     <br>
-    <input name="email" type="text" placeholder="E-mail" class="{{$class}}">
+    <input name="email" type="text" placeholder="Digite seu E-mail" class="{{$class}}" value="{{old('email')}}">
     <br>
-    <select name="motivo_contato" class="{{$class}}">
-        <option value="">Qual o motivo do contato?</option>
-        <option value="1">Dúvida</option>
-        <option value="2">Elogio</option>
-        <option value="3">Reclamação</option>
+    <select name="contact_reason" class="{{$class}}">
+        {{-- <option value="">Qual o motivo do contato?</option>
+        <option value="1" {{old('contact_reason') == 1 ? 'selected' : ''}}>Dúvida</option>
+        <option value="2" {{old('contact_reason') == 2 ? 'selected' : ''}}>Elogio</option>
+        <option value="3" {{old('contact_reason') == 3 ? 'selected' : ''}}>Reclamação</option> --}}
+        @foreach ($contact_reason as $k => $v )
+            <option value="{{$k}}" {{old('contact_reason') == $k ? 'selected' : ''}}>{{$v}}</option>      
+        @endforeach
     </select>
     <br>
-    <textarea name="mensagem" class="{{$class}}">Preencha aqui a sua mensagem</textarea>
+    <textarea name="msg" class="{{$class}}">{{empty(old('msg')) ? 'Preencha aqui a sua mensagem' : old('msg')}}</textarea>
     <br>
     <button type="submit" class="{{$class}}">ENVIAR</button>
 </form>

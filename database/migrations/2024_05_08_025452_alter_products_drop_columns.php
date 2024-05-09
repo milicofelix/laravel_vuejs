@@ -26,7 +26,7 @@ class AlterProductsDropColumns extends Migration
      */
     public function down()
     {
-        Schema::table('produtos', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->decimal('sale_price', 8, 2);
             $table->integer('min_stock');
             $table->integer('max_stock');
