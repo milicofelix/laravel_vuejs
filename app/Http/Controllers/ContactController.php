@@ -8,6 +8,7 @@ use App\Models\ContactReason;
 
 class ContactController extends Controller
 {
+
     public function index() {
 
         // $contact_reason = [
