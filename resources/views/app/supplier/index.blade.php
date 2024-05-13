@@ -1,4 +1,9 @@
-{{-- Comentarios no blade --}}
+@extends('app.layouts.basic')
+
+@section('title', 'Fornecedor')
+
+@section('content')
+    {{-- Comentarios no blade --}}
 {{-- @dd($suppliers); --}}
 {{-- @if (count($suppliers) > 0 && count($suppliers) < 10)
     <h3>Existem {{count($suppliers)}} Fornecedores cadastrados.</h3>
@@ -52,4 +57,6 @@
         Não existem fornecedores cadastrados!!!
     @endforelse
 @endisset
+@endsection
+
 
