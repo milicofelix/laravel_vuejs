@@ -18,7 +18,7 @@
         </div>
 
         <div class="informacao-pagina">
-            {{ $msg ?? '' }}
+            <h3 {{ $style ?? '' }}>{{ $msg ?? '' }}</h3>
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 <form method="post" action="{{ route('app.suppliers.new') }}">
                     <input type="hidden" name="id" value="{{ $supplier->id ?? '' }}">

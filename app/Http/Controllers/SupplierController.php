@@ -50,9 +50,9 @@ class SupplierController extends Controller
     public function new(Request $request) {
 
         $msg = '';
-
+        $style = '';
         //inclusão
-        if($request->input('_token') != '' && $request->input('id') == '') {
+        if(!empty($request->input('_token')) && !empty($request->input('id'))) {
             //validacao
             $rules = [
                 'name' => 'required|min:3|max:40',
@@ -78,31 +78,32 @@ class SupplierController extends Controller
             //redirect
 
             //dados view
+            $style = "style=color:green;";
             $msg = 'Cadastro realizado com sucesso';
         }
 
            //edição
-           if($request->input('_token') != '' && $request->input('id') != '') {
-
+           if(!empty($request->input('_token')) && !empty($request->input('id'))) {
             $supplier = Supplier::find($request->input('id'));
             $update = $supplier->update($request->all());
 
             if($update) {
+                $style = "style=color:green;";
                 $msg = 'Atualização realizado com sucesso';
             } else {
+                $style = "style=color:red;";
                 $msg = 'Erro ao tentar atualizar o registro';
             }
-
-            return redirect()->route('app.suppliers.edit', ['id' => $request->input('id'), 'msg' => $msg]);
+            return redirect()->route('app.suppliers.edit', ['id' => $request->input('id'), 'msg' => $msg, 'style' => $style]);
             
            }
    
         return view('app.supplier.new', ['msg' => $msg]);
     }
 
-    public function edit($id, $msg = '') {
+    public function edit($id, $msg = '', $style = '') {
         
         $supplier = Supplier::find($id);
-        return view('app.supplier.new', ['supplier' => $supplier, 'msg' => $msg]);
+        return view('app.supplier.new', ['supplier' => $supplier, 'msg' => $msg, 'style' => $style]);
     }
 }

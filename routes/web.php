@@ -33,7 +33,7 @@ Route::post('/login', 'LoginController@login')->name('site.login');
     Route::post('/suppliers/list', 'SupplierController@list')->name('app.suppliers.list');
     Route::get('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
     Route::post('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
-    Route::get('/suppliers/edit/{id}/{msg?}', 'SupplierController@edit')->name('app.suppliers.edit');
+    Route::get('/suppliers/edit/{id}/{msg?}/{style?}', 'SupplierController@edit')->name('app.suppliers.edit');
 
     Route::get('/products', 'ProductsController@index')->name('app.products');
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');
