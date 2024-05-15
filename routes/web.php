@@ -27,7 +27,14 @@ Route::post('/login', 'LoginController@login')->name('site.login');
     Route::middleware('authentication:padrao,visitante')->prefix('/app')->group(function() {
     Route::get('/clients', 'ClientsController@index')->name('app.clients');
     Route::get('/', 'HomeController@index')->name('app.home');
+    
+    /* Supplier routes */
     Route::get('/suppliers', 'SupplierController@index')->name('app.suppliers');
+    Route::post('/suppliers/list', 'SupplierController@list')->name('app.suppliers.list');
+    Route::get('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
+    Route::post('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
+    Route::get('/suppliers/edit/{id}/{msg?}', 'SupplierController@edit')->name('app.suppliers.edit');
+
     Route::get('/products', 'ProductsController@index')->name('app.products');
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');
 });
