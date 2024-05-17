@@ -31,9 +31,11 @@ Route::post('/login', 'LoginController@login')->name('site.login');
     /* Supplier routes */
     Route::get('/suppliers', 'SupplierController@index')->name('app.suppliers');
     Route::post('/suppliers/list', 'SupplierController@list')->name('app.suppliers.list');
+    Route::get('/suppliers/list/{msg?}/{style?}', 'SupplierController@list')->name('app.suppliers.list');
     Route::get('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
     Route::post('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
     Route::get('/suppliers/edit/{id}/{msg?}/{style?}', 'SupplierController@edit')->name('app.suppliers.edit');
+    Route::get('/suppliers/destroy/{id}/{msg?}/{style?}', 'SupplierController@destroy')->name('app.suppliers.destroy');
 
     Route::get('/products', 'ProductsController@index')->name('app.products');
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');

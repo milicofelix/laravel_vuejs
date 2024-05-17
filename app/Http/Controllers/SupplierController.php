@@ -42,9 +42,9 @@ class SupplierController extends Controller
         ->where('site', 'like', '%'.$request->input('site').'%')
         ->where('uf', 'like', '%'.$request->input('uf').'%')
         ->where('email', 'like', '%'.$request->input('email').'%')
-        ->get();
+        ->paginate(10);
 
-        return view('app.supplier.list', ['suppliers' => $suppliers]);
+        return view('app.supplier.list', ['suppliers' => $suppliers, 'request' => $request->all()]);
     }
     
     public function new(Request $request) {
@@ -52,7 +52,7 @@ class SupplierController extends Controller
         $msg = '';
         $style = '';
         //inclusão
-        if(!empty($request->input('_token')) && !empty($request->input('id'))) {
+        if(!empty($request->input('_token')) && empty($request->input('id'))) {
             //validacao
             $rules = [
                 'name' => 'required|min:3|max:40',
@@ -98,12 +98,21 @@ class SupplierController extends Controller
             
            }
    
-        return view('app.supplier.new', ['msg' => $msg]);
+        return view('app.supplier.new', ['msg' => $msg, 'style' => $style]);
     }
 
     public function edit($id, $msg = '', $style = '') {
         
         $supplier = Supplier::find($id);
         return view('app.supplier.new', ['supplier' => $supplier, 'msg' => $msg, 'style' => $style]);
+    }
+
+    public function destroy($id) {
+        $msg = '';
+        $res = Supplier::find($id)->delete();
+        $style = "style=color:green;";
+        $msg  = $res ? "Registro removido com sucesso!" : "";
+        
+        return redirect()->route('app.suppliers.list', ['msg' => $msg, 'style' => $style]);
     }
 }
