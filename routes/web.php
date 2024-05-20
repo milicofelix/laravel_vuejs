@@ -37,7 +37,10 @@ Route::post('/login', 'LoginController@login')->name('site.login');
     Route::get('/suppliers/edit/{id}/{msg?}/{style?}', 'SupplierController@edit')->name('app.suppliers.edit');
     Route::get('/suppliers/destroy/{id}/{msg?}/{style?}', 'SupplierController@destroy')->name('app.suppliers.destroy');
 
-    Route::get('/products', 'ProductsController@index')->name('app.products');
+    // Route::get('/products', 'ProductController@index')->name('app.products');
+
+    /* Products */
+    Route::resource('/products',ProductController::class);
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');
 });
 
