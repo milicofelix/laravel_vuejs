@@ -41,6 +41,9 @@ Route::post('/login', 'LoginController@login')->name('site.login');
 
     /* Products */
     Route::resource('/products',ProductController::class);
+    /* Product Details */
+    Route::resource('/product-details',ProductDetailController::class);
+    
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');
 });
 
