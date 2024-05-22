@@ -41,9 +41,9 @@
                                 <td>{{ $product->description }}</td>
                                 <td>{{ $product->weight }}</td>
                                 <td>{{ $product->unit_id }}</td>
-                                <td>{{ $product->length ?? '' }}</td>
-                                <td>{{ $product->width ?? '' }}</td>
-                                <td>{{ $product->height ?? '' }}</td>
+                                <td>{{ $product->productDetails->length ?? '' }}</td>
+                                <td>{{ $product->productDetails->width ?? '' }}</td>
+                                <td>{{ $product->productDetails->height ?? '' }}</td>
                                 <td><a href="{{ route('products.show', ['product' => $product->id ]) }}">Visualizar</a></td>
                                 <td> <form id="form_{{ $product->id }}" method="post" action="{{ route('products.destroy', ['product' => $product->id]) }}">
                                     @method('DELETE')

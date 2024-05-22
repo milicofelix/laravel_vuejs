@@ -18,17 +18,6 @@ class ProductController extends Controller
     {
         $products = Product::paginate(10);
 
-        foreach($products as $key => $product) {
-            $productDetail = ProductDetail::where('product_id', $product->id)->first();
-
-            if(isset($productDetail)) {
-                //dd($productDetail->getAttributes());
-                $products[$key]['length'] = $productDetail->length;
-                $products[$key]['width'] = $productDetail->width;
-                $products[$key]['height'] = $productDetail->height;
-            }
-        }
-
         return view('app.products.index', ['products' => $products, 'request' => $request->all()]);
     }
 
