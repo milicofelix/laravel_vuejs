@@ -43,6 +43,31 @@
                                 <td><a href="{{ route('app.suppliers.destroy', $supplier->id) }}">Excluir</a></td>
                                 <td><a href="{{ route('app.suppliers.edit', $supplier->id) }}">Editar</a></td>
                             </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <p>Lista de produtos</p>
+                                    @if(count($supplier->products) > 0)
+                                    <table border="1" style="margin:20px">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($supplier->products as $key => $product)
+                                                <tr>
+                                                    <td>{{ $product->id}}</td>
+                                                    <td>{{ $product->name}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    @else 
+                                    <h3>Nenhum produto cadastrado!</h3>
+                                @endif
+                                </td>
+                            <tr>
                         @endforeach
                     </tbody>
                 </table>
