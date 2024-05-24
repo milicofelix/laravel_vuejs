@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use App\Models\ProductDetail;
 use App\Models\Unit;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ProductController extends Controller
     public function create()
     {
         $units = Unit::all();
-        return view('app.products.create', ['units' => $units]);
+        $suppliers = Supplier::all();
+        return view('app.products.create', ['units' => $units, 'suppliers' => $suppliers ]);
     }
 
     /**
@@ -84,7 +86,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $units = Unit::all();
-        return view('app.products.edit', ['product' => $product, 'units' => $units]);
+        $suppliers = Supplier::all();
+        
+        return view('app.products.edit', ['product' => $product, 'units' => $units, 'suppliers' => $suppliers]);
     }
 
     /**
