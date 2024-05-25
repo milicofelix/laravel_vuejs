@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\App;
 
-use App\Models\ProductDetail;
-use App\Models\Unit;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ProductDetailController extends Controller
+class ProductOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,8 +24,7 @@ class ProductDetailController extends Controller
      */
     public function create()
     {
-        $units = Unit::all();
-        return view('app.product-details.create', ['units' => $units]);
+        //
     }
 
     /**
@@ -37,17 +35,16 @@ class ProductDetailController extends Controller
      */
     public function store(Request $request)
     {
-        ProductDetail::create($request->all());
-        echo 'Cadastro realizado com sucesso';
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductDetail $productDetail)
+    public function show($id)
     {
         //
     }
@@ -55,35 +52,33 @@ class ProductDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductDetail $productDetail)
+    public function edit($id)
     {
-        $units = Unit::all();
-        return view('app.product-details.edit', ['productDetail' => $productDetail, 'units' => $units]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductDetail $productDetail)
+    public function update(Request $request, $id)
     {
-        $productDetail->update($request->all());
-        echo 'Atualização foi realizada com sucesso';
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductDetail $productDetail)
+    public function destroy($id)
     {
         //
     }

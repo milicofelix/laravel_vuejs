@@ -44,7 +44,7 @@
                                 <td><a href="{{ route('app.suppliers.edit', $supplier->id) }}">Editar</a></td>
                             </tr>
                             <tr>
-                                <td colspan="6">
+                                <td colspan="7">
                                     <p>Lista de produtos</p>
                                     @if(count($supplier->products) > 0)
                                     <table border="1" style="margin:20px">

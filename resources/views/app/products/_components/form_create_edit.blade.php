@@ -10,7 +10,7 @@
         <option>-- Selecione um Fornecedor --</option>
 
         @foreach($suppliers as $supplier)
-            <option value="{{ $supplier->id }}" {{ ($produto->supplier_id ?? old('supplier_id')) == $supplier->id ? 'selected' : '' }} >{{ $supplier->name }}</option>
+            <option value="{{ $supplier->id }}" {{ ($product->supplier_id ?? old('supplier_id')) == $supplier->id ? 'selected' : '' }} >{{ $supplier->name }}</option>
         @endforeach
     </select>
     {{ $errors->has('supplier_id') ? $errors->first('supplier_id') : '' }}

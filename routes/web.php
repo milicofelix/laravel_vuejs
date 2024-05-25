@@ -25,24 +25,30 @@ Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@login')->name('site.login');
 
     Route::middleware('authentication:padrao,visitante')->prefix('/app')->group(function() {
-    Route::get('/clients', 'ClientsController@index')->name('app.clients');
-    Route::get('/', 'HomeController@index')->name('app.home');
+    Route::get('/', 'App\HomeController@index')->name('app.home');
     
     /* Supplier routes */
-    Route::get('/suppliers', 'SupplierController@index')->name('app.suppliers');
-    Route::post('/suppliers/list', 'SupplierController@list')->name('app.suppliers.list');
-    Route::get('/suppliers/list/{msg?}/{style?}', 'SupplierController@list')->name('app.suppliers.list');
-    Route::get('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
-    Route::post('/suppliers/new', 'SupplierController@new')->name('app.suppliers.new');
-    Route::get('/suppliers/edit/{id}/{msg?}/{style?}', 'SupplierController@edit')->name('app.suppliers.edit');
-    Route::get('/suppliers/destroy/{id}/{msg?}/{style?}', 'SupplierController@destroy')->name('app.suppliers.destroy');
+    Route::get('/suppliers', 'App\SupplierController@index')->name('app.suppliers');
+    Route::post('/suppliers/list', 'App\SupplierController@list')->name('app.suppliers.list');
+    Route::get('/suppliers/list/{msg?}/{style?}', 'App\SupplierController@list')->name('app.suppliers.list');
+    Route::get('/suppliers/new', 'App\SupplierController@new')->name('app.suppliers.new');
+    Route::post('/suppliers/new', 'App\SupplierController@new')->name('app.suppliers.new');
+    Route::get('/suppliers/edit/{id}/{msg?}/{style?}', 'App\SupplierController@edit')->name('app.suppliers.edit');
+    Route::get('/suppliers/destroy/{id}/{msg?}/{style?}', 'App\SupplierController@destroy')->name('app.suppliers.destroy');
 
     // Route::get('/products', 'ProductController@index')->name('app.products');
 
     /* Products */
-    Route::resource('/products',ProductController::class);
+    Route::resource('/products','App\ProductController');
     /* Product Details */
-    Route::resource('/product-details',ProductDetailController::class);
+    Route::resource('/product-details','App\ProductDetailController');
+    /* Order */
+    Route::resource('/orders','App\OrderController');
+     /* Product Order */
+     Route::resource('/product-orders','App\ProductOrderController');
+      /* Client */
+    Route::resource('/clients','App\ClientController');
+    
     
     Route::get('/login', 'LoginController@logoff')->name('app.logoff');
 });
