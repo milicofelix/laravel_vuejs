@@ -4,6 +4,9 @@ namespace App\Http\Controllers\App;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ProductOrder;
+use App\Models\Order;
 
 class ProductOrderController extends Controller
 {
@@ -22,9 +25,10 @@ class ProductOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Order $order)
     {
-        //
+        $products = Product::all();
+        return view('app.product-orders.create', ['order' => $order, 'products' => $products]);
     }
 
     /**
@@ -33,9 +37,24 @@ class ProductOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Order $order)
     {
-        //
+        $rules = [
+            'product_id' => 'exists:products,id'
+        ];
+
+        $feedback = [
+            'product_id.exists' => 'O product informado não existe'
+        ];
+
+        $request->validate($rules, $feedback);
+
+        $productOrder = new ProductOrder();
+        $productOrder->order_id = $order->id;
+        $productOrder->product_id = $request->get('product_id');
+        $productOrder->save();
+
+        return redirect()->route('product-orders.create', ['order' => $order->id]);
     }
 
     /**
@@ -78,8 +97,28 @@ class ProductOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order, Product $product)
     {
-        //
+         /*
+        print_r($order->getAttributes());
+        echo '<hr>';
+        print_r($product->getAttributes());
+        */
+
+        echo $order->id.' - '.$product->id;
+
+        //convencional
+        /*
+        PedidoProduto::where([
+            'order_id' => $order->id,
+            'product_id' => $product->id
+        ])->delete();
+        */
+
+        //detach (delete pelo relacionamento)
+        $order->products()->detach($product->id);
+        //product_id
+        
+        return redirect()->route('product-orders.create', ['order' => $order->id]);
     }
 }

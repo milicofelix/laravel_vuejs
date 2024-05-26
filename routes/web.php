@@ -45,7 +45,10 @@ Route::post('/login', 'LoginController@login')->name('site.login');
     /* Order */
     Route::resource('/orders','App\OrderController');
      /* Product Order */
-     Route::resource('/product-orders','App\ProductOrderController');
+     //Route::resource('/product-orders','App\ProductOrderController');
+     Route::get('product-orders/create/{order}', 'App\ProductOrderController@create')->name('product-orders.create');
+     Route::post('product-orders/store/{order}', 'App\ProductOrderController@store')->name('product-orders.store');
+     Route::delete('product-orders.destroy/{order}/{product}', 'App\ProductOrderController@destroy')->name('product-orders.destroy');
       /* Client */
     Route::resource('/clients','App\ClientController');
     
